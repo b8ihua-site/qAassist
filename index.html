@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>404 Not Found</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet"></head><body>
+<a href="https://b8ihua.com/qAassist" style="text-decoration: none;"><div class="site-header">
+
+  <h1 style="font-family:Questrial;font-size:30px; letter-spacing:-1px; margin-top:20px;">qAa</h1></div></a>
+
+
+  
+<style>
+
+
+.site-header h1 {
+  margin: 0 0 8px;
+font-family:Zalando Sans Expanded;
+  color:black;
+line-height:17px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+ margin: 17px 18px;
+
+}
+
+.site-header p {
+  margin: 0;
+margin-top:0px;
+  font-size: 0.9rem;
+  color: black;
+font-family: Questrial;
+line-height:15px;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #fff;
+  color: #000;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+#score {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  font-size:12px;
+font-family: Questrial;
+}
+
+.content {
+  
+  margin-top: 5vh;
+}
+
+.target {
+  display: inline-block;
+  margin: 20px;
+}
+
+.char {
+  display: inline-block;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.subject-section {
+  margin: 20px 18px;
+  max-width: 600px;
+}
+
+.section-title {
+  font-family: Questrial;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin: 40px 0 12px;
+}
+
+.subject-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.subject-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: "Jersey 20", sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+
+.subject-text {
+  flex-grow: 1;
+}
+
+.subject-name {
+  font-size: 16px;
+  font-family: Questrial;
+}
+
+.subject-count {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.start-btn {
+  background: none;
+  border: 1px solid #000;
+  border-radius: 999px;
+  padding: 6px 20px;
+  font-size: 12px;
+  font-family: Questrial;
+  cursor: pointer;
+  color:black;
+}
+
+.start-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+        .container {
+            position: relative;
+            padding:20px 18px 0px 18px;
+            height: 50px; 
+            display: flex;
+            
+            overflow: hidden; /* 枠外の文字を隠す */
+        } 
+
+        .text-item {
+            position: absolute;
+            opacity: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            transform: translateY(30px); /* 最初は少し下に配置 */
+            transition: all 0.6s ease; /* アニメーションの速度 */
+            pointer-events: none;
+            width: 100%;
+        }
+
+        /* フェードイン（下から中央へ） */
+        .text-item.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* フェードアウト（中央から上へ） */
+        .text-item.exit {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+</style>
+
+
+
+
+
+
+<main class="content">
+  <h1 class="target" style="font-family:Questrial;">qA-assist verbatim</h1>
+ <div class="container" id="text-container">
+        <div class="text-item">🧠 スマホを使って隙間時間ですぐに始められる<br>　&nbsp;&nbsp;qAの補助ツールです</div>
+        <div class="text-item">📝 試験でそのまま出る記述問題を<br>　&nbsp;&nbsp;そのまま覚えましょう</div>
+        <div class="text-item">👻 画面上の任意の箇所をタップすることで<br>　&nbsp;&nbsp;マスクされた語句が段階的に表示されます</div>
+        <div class="text-item">🤖 機械的な処理でマスクするため<br>　&nbsp;&nbsp;見当違いな箇所がマスクされることがあります</div>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.text-item');
+        let currentIndex = 0;
+
+        function changeText() {
+            // 現在の要素を取得
+            const currentItem = items[currentIndex];
+            
+            // 1. 下からフェードイン
+            currentItem.classList.add('active');
+
+            // 2. 2秒間表示させた後、上にフェードアウト
+            setTimeout(() => {
+                currentItem.classList.remove('active');
+                currentItem.classList.add('exit');
+
+                // 3. 次の要素へ（アニメーションが終わる頃に実行）
+                setTimeout(() => {
+                    currentItem.classList.remove('exit'); // 次の周回のためにリセット
+                    
+                    currentIndex = (currentIndex + 1) % items.length;
+                    changeText(); // 再帰的に呼び出し
+                }, 600); // transitionの時間(0.6s)と合わせる
+
+            }, 3000); // 2秒間表示
+        }
+
+        // 最初の実行
+        window.onload = changeText;
+    </script>
+
+   <!-- 科目一覧 -->
+  <section class="subject-section">
+
+    <h2 class="section-title">3年前期科目</h2>
+
+    <div class="subject-row">
+      <div class="subject-icon" style="background:#7856FF;">PCf</div>
+      <div class="subject-text">
+        <div class="subject-name">薬理学F</div>
+        <div class="subject-count">98問</div>
+      </div>
+      <button class="start-btn">開始</button>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-icon" style="background:#AC59B4;">PAf</div>
+      <div class="subject-text">
+        <div class="subject-name">病理学F</div> 
+        <div class="subject-count">120問</div>
+      </div>
+      <button class="start-btn">開始</button>
+    </div>
+
+    <h2 class="section-title">3年後期科目</h2>
+
+    <div class="subject-row">
+      <div class="subject-icon" style="background:#8E009B;">PAs1</div>
+      <div class="subject-text">
+        <div class="subject-name">病理学S1</div>
+        <div class="subject-count">45問</div>
+      </div>
+      <button class="start-btn">開始</button>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-icon" style="background:#5C0064;">PAs2</div>
+      <div class="subject-text">
+        <div class="subject-name">病理学S2</div>
+        <div class="subject-count">52問</div>
+      </div>
+      <button class="start-btn">開始</button>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-icon" style="background:#5200E0;">PCs</div>
+      <div class="subject-text">
+        <div class="subject-name">薬理学S</div>
+        <div class="subject-count">60問</div>
+      </div>
+      <a href="b8ihua.com/yakuri"><button class="start-btn">開始</button></a>
+    </div>
+
+  </section>
