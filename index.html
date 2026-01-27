@@ -13,6 +13,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet"></head><body>
+
+<button id="theme-toggle" aria-label="ダークモード切替">
+    <span class="icon-sun">☀️</span>
+    <span class="icon-moon">🌙</span>
+</button>
+
 <a href="https://b8ihua.com/qAassist" style="text-decoration: none;"><div class="site-header">
 
   <h1 style="font-family:Questrial;font-size:30px; letter-spacing:-1px; margin-top:20px;">qAa</h1></div></a>
@@ -20,12 +26,74 @@
 
   
 <style>
+/* カラーパレットの定義（CSS変数） */
+:root {
+  --bg-color: #fff;
+  --text-color: #000;
+  --header-text-color: black;
+  --text-item-color: #333;
+  --border-color: rgba(0,0,0,0.1);
+  --btn-border: #000;
+  --btn-text: black;
+  --btn-hover-bg: #000;
+  --btn-hover-text: #fff;
+  --subject-count-opacity: 0.5;
+}
 
+/* ダークモード時の定義 */
+body.dark-mode {
+  --bg-color: #121212; /* 背景色を暗く */
+  --text-color: #e0e0e0; /* 基本文字色を明るく */
+  --header-text-color: #e0e0e0;
+  --text-item-color: #ccc;
+  --border-color: rgba(255,255,255,0.1); /* ボーダーを明るく透明に */
+  --btn-border: #e0e0e0;
+  --btn-text: #e0e0e0;
+  --btn-hover-bg: #e0e0e0;
+  --btn-hover-text: #121212;
+  --subject-count-opacity: 0.7; /* 暗い背景で見やすいように少し不透明度を上げる */
+}
 
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--bg-color); /* 変数に変更 */
+  color: var(--text-color); /* 変数に変更 */
+  font-family: sans-serif;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s; /* スムーズな切り替え */
+}
+
+/* 切り替えボタンのスタイル */
+#theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1000;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    /* ボタン自体の色もモードに合わせる場合 */
+    color: var(--text-color);
+}
+
+#theme-toggle:hover {
+    background-color: var(--border-color);
+}
+
+/* モードに応じてアイコンの表示を切り替える */
+body:not(.dark-mode) .icon-moon { display: none; }
+body.dark-mode .icon-sun { display: none; }
+
+/* 既存のスタイルを変数を使って修正 */
 .site-header h1 {
   margin: 0 0 8px;
 font-family:Zalando Sans Expanded;
-  color:black;
+  color: var(--header-text-color); /* 変数に変更 */
 line-height:17px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -38,23 +106,15 @@ line-height:17px;
   margin: 0;
 margin-top:0px;
   font-size: 0.9rem;
-  color: black;
+  color: var(--text-color); /* 変数に変更(blackから) */
 font-family: Questrial;
 line-height:15px;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  background: #fff;
-  color: #000;
-  font-family: sans-serif;
-  overflow: hidden;
-}
-
+/* #score はHTML内に存在しないため削除しても良いが、念のため残すなら位置を調整 */
 #score {
   position: fixed;
-  top: 16px;
+  top: 50px; /* ボタンと被らないように少し下げる */
   right: 16px;
   font-size:12px;
 font-family: Questrial;
@@ -91,14 +151,14 @@ font-family: Questrial;
   display: flex;
   align-items: center;
   padding: 14px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--border-color); /* 変数に変更 */
 }
 
 .subject-icon {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  color: #fff;
+  color: #fff; /* アイコン内の文字は白固定でOK */
   font-family: "Jersey 20", sans-serif;
   font-size: 18px;
   display: flex;
@@ -112,7 +172,7 @@ font-family: Questrial;
 .subject-text {
   flex-grow: 1;
 }
-
+ 
 .subject-name {
   font-size: 16px;
   font-family: Questrial;
@@ -120,23 +180,24 @@ font-family: Questrial;
 
 .subject-count {
   font-size: 12px;
-  opacity: 0.5;
+  opacity: var(--subject-count-opacity); /* 変数に変更 */
 }
 
 .start-btn {
   background: none;
-  border: 1px solid #000;
+  border: 1px solid var(--btn-border); /* 変数に変更 */
   border-radius: 999px;
   padding: 6px 20px;
   font-size: 12px;
   font-family: Questrial;
   cursor: pointer;
-  color:black;
+  color: var(--btn-text); /* 変数に変更 */
+  transition: background-color 0.3s, color 0.3s; /* スムーズな変化 */
 }
 
 .start-btn:hover {
-  background: #000;
-  color: #fff;
+  background: var(--btn-hover-bg); /* 変数に変更 */
+  color: var(--btn-hover-text); /* 変数に変更 */
 }
 
         .container {
@@ -153,7 +214,7 @@ font-family: Questrial;
             opacity: 0;
             font-size: 15px;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-item-color); /* 変数に変更 */
             transform: translateY(30px); /* 最初は少し下に配置 */
             transition: all 0.6s ease; /* アニメーションの速度 */
             pointer-events: none;
@@ -219,8 +280,32 @@ font-family: Questrial;
         window.onload = changeText;
     </script>
 
-   <!-- 科目一覧 -->
-  <section class="subject-section">
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // ローカルストレージからテーマ設定を読み込む
+        const currentTheme = localStorage.getItem('theme');
+        // 保存されたテーマが 'dark' なら、初期表示時に dark-mode クラスを付与
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        // ボタンクリック時の処理
+        toggleButton.addEventListener('click', () => {
+            // dark-mode クラスを切り替える (ついていれば外す、なければつける)
+            body.classList.toggle('dark-mode');
+
+            // 現在の状態をローカルストレージに保存
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+
+   <section class="subject-section">
 
     <h2 class="section-title">3年前期科目</h2>
 
@@ -268,7 +353,9 @@ font-family: Questrial;
         <div class="subject-name">薬理学S</div>
         <div class="subject-count">60問</div>
       </div>
-      <a href="b8ihua.com/yakuri"><button class="start-btn">開始</button></a>
+      <button class="start-btn">開始</button>
     </div>
 
   </section>
+</body>
+</html>
